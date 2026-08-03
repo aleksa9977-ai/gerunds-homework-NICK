@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinitive & Gerund Practice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .correct-bg { background-color: #d1fae5; border-color: #10b981; }
+        .incorrect-bg { background-color: #fee2e2; border-color: #ef4444; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 pb-12">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-10 px-4 text-center shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-extrabold mb-2">Infinitive vs. Gerund</h1>
+        <p class="text-indigo-100 text-lg max-w-2xl mx-auto">Інтерактивний тренажер для засвоєння форм <code class="bg-white/20 px-2 py-1 rounded">-ing</code> та <code class="bg-white/20 px-2 py-1 rounded">to + infinitive</code></p>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-4 mt-8 space-y-8">
+
+        <!-- Rule Cheat Sheet -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-lightbulb"></i> Швидка підказка
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                    <h3 class="font-bold text-emerald-800 mb-2">Verb + -ing (Gerund)</h3>
+                    <p class="text-emerald-700">enjoy, avoid, finish, mind, suggest, imagine</p>
+                </div>
+                <div class="p-4 bg-purple-50 rounded-xl border border-purple-100">
+                    <h3 class="font-bold text-purple-800 mb-2">Verb + to + Infinitive</h3>
+                    <p class="text-purple-700">decide, promise, hope, agree, want, afford, expect, would like</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 1 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-slate-800">1. Complete the Sentences</h2>
+                <span class="text-sm text-slate-500">Заповніть пропуски</span>
+            </div>
+            <div id="task1-list" class="space-y-4"></div>
+            <button onclick="checkTask1()" class="mt-6 w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-6 rounded-xl transition shadow">
+                Перевірити завдання 1
+            </button>
+        </section>
+
+        <!-- Task 2 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800 mb-2">2. Correct the Mistakes</h2>
+            <p class="text-slate-500 text-sm mb-6">Кожне речення містить одну помилку. Введіть виправлений варіант.</p>
+            <div id="task2-list" class="space-y-4"></div>
+            <button onclick="checkTask2()" class="mt-6 w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-6 rounded-xl transition shadow">
+                Перевірити завдання 2
+            </button>
+        </section>
+
+        <!-- Task 3 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800 mb-2">3. Translate into English</h2>
+            <p class="text-slate-500 text-sm mb-6">Перекладіть речення на англійську мову та перевірте себе.</p>
+            <div id="task3-list" class="space-y-4"></div>
+        </section>
+
+        <!-- Task 4 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">4. Choose the Correct Answer</h2>
+            <div id="task4-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            <button onclick="checkTask4()" class="mt-6 w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-6 rounded-xl transition shadow">
+                Перевірити завдання 4
+            </button>
+        </section>
+
+        <!-- Challenge -->
+        <section class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 shadow-sm border border-amber-200">
+            <h2 class="text-xl font-bold text-amber-900 mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-star text-amber-500"></i> ⭐ Challenge: Complete the Story
+            </h2>
+            <p class="text-amber-800 text-sm mb-6">Заповніть пропуски відповідною формою дієслова в тексті.</p>
+            
+            <div class="leading-relaxed text-slate-800 bg-white/80 p-6 rounded-xl border border-amber-200 space-y-3">
+                Last weekend my friends suggested <input type="text" id="ch-1" data-ans="going" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (go) hiking. 
+                I wanted <input type="text" id="ch-2" data-ans="to stay" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (stay) at home because I had finished 
+                <input type="text" id="ch-3" data-ans="working" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (work) late on Friday. 
+                In the end, I agreed <input type="text" id="ch-4" data-ans="to join" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (join) them. 
+                I didn't mind <input type="text" id="ch-5" data-ans="walking" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (walk) for a few hours because the weather was perfect. 
+                We hoped <input type="text" id="ch-6" data-ans="to see" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (see) some wild animals, but we only managed 
+                <input type="text" id="ch-7" data-ans="to find" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (find) a few birds. 
+                I really enjoyed <input type="text" id="ch-8" data-ans="spending" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (spend) the day outside, and I promised 
+                <input type="text" id="ch-9" data-ans="to go" class="w-28 px-2 py-1 border rounded text-center font-semibold"> (go) with them again next month.
+            </div>
+
+            <button onclick="checkChallenge()" class="mt-6 w-full md:w-auto bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2.5 px-6 rounded-xl transition shadow">
+                Перевірити історію
+            </button>
+        </section>
+
+        <!-- Task 5 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-800 mb-2">5. Write Your Own Sentences</h2>
+            <p class="text-slate-500 text-sm mb-6">Напишіть власні 10 речень із заповненим списком дієслів.</p>
+            <div id="task5-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+
+    </div>
+
+    <script>
+        // Data Structure
+        const task1Data = [
+            { id: "1", before: "I enjoy", verb: "read", after: "before bed.", ans: "reading" },
+            { id: "2", before: "She decided", verb: "study", after: "abroad.", ans: "to study" },
+            { id: "3", before: "We finished", verb: "clean", after: "the kitchen.", ans: "cleaning" },
+            { id: "4", before: "He promised", verb: "call", after: "me later.", ans: "to call" },
+            { id: "5", before: "They avoid", verb: "drive", after: "during rush hour.", ans: "driving" },
+            { id: "6", before: "I hope", verb: "visit", after: "Italy next year.", ans: "to visit" },
+            { id: "7", before: "She doesn't mind", verb: "wait", after: ".", ans: "waiting" },
+            { id: "8", before: "We agreed", verb: "help", after: "our neighbours.", ans: "to help" },
+            { id: "9", before: "Can you imagine", verb: "live", after: "on Mars?", ans: "living" },
+            { id: "10", before: "They want", verb: "buy", after: "a new laptop.", ans: "to buy" },
+            { id: "11", before: "He suggested", verb: "watch", after: "a comedy.", ans: "watching" },
+            { id: "12", before: "I can't afford", verb: "eat", after: "at that restaurant every week.", ans: "to eat" }
+        ];
+
+        const task2Data = [
+            { original: "I enjoy to swim in the sea.", ans: "I enjoy swimming in the sea." },
+            { original: "She decided going home early.", ans: "She decided to go home early." },
+            { original: "We finished to do our homework.", ans: "We finished doing our homework." },
+            { original: "He suggested to meet on Friday.", ans: "He suggested meeting on Friday." },
+            { original: "They agreed helping us.", ans: "They agreed to help us." },
+            { original: "I hope passing the exam.", ans: "I hope to pass the exam." },
+            { original: "She wants buying a new phone.", ans: "She wants to buy a new phone." },
+            { original: "I don't mind to wait.", ans: "I don't mind waiting." },
+            { original: "He promised helping me tomorrow.", ans: "He promised to help me tomorrow." },
+            { original: "We avoided to talk about politics.", ans: "We avoided talking about politics." }
+        ];
+
+        const task3Data = [
+            { ukr: "Я люблю слухати музику, коли працюю.", eng: "I enjoy listening to music when I work." },
+            { ukr: "Ми вирішили поїхати потягом.", eng: "We decided to go by train." },
+            { ukr: "Вона запропонувала замовити піцу.", eng: "She suggested ordering a pizza." },
+            { ukr: "Я не проти почекати кілька хвилин.", eng: "I don't mind waiting a few minutes." },
+            { ukr: "Вони пообіцяли приїхати вчасно.", eng: "They promised to arrive on time." },
+            { ukr: "Він хоче знайти нову роботу.", eng: "He wants to find a new job." },
+            { ukr: "Ми закінчили дивитися фільм.", eng: "We finished watching the movie." },
+            { ukr: "Я уникаю відповідати на незнайомі номери.", eng: "I avoid answering unknown numbers." },
+            { ukr: "Вона сподівається вступити до університету.", eng: "She hopes to enter university." },
+            { ukr: "Чи можеш уявити, що живеш без інтернету?", eng: "Can you imagine living without the internet?" }
+        ];
+
+        const task4Data = [
+            { q: "I would like...", opts: ["a) going home", "b) to go home"], ans: "b" },
+            { q: "She enjoys...", opts: ["a) cooking", "b) to cook"], ans: "a" },
+            { q: "They agreed...", opts: ["a) to help", "b) helping"], ans: "a" },
+            { q: "We avoid...", opts: ["a) wasting time", "b) to waste time"], ans: "a" },
+            { q: "He promised...", opts: ["a) calling", "b) to call"], ans: "b" },
+            { q: "I don't mind...", opts: ["a) waiting", "b) to wait"], ans: "a" },
+            { q: "She expects...", opts: ["a) to hear from you", "b) hearing from you"], ans: "a" },
+            { q: "We finished...", opts: ["a) to eat", "b) eating"], ans: "b" }
+        ];
+
+        const task5Verbs = ["enjoy", "suggest", "avoid", "decide", "promise", "agree", "want", "hope", "imagine", "would like"];
+
+        // Render Functions
+        function renderTask1() {
+            const container = document.getElementById('task1-list');
+            container.innerHTML = task1Data.map((item, index) => `
+                <div class="flex flex-wrap items-center gap-2 p-3 rounded-lg border border-slate-100 bg-slate-50">
+                    <span class="font-bold text-slate-400 w-6">${index + 1}.</span>
+                    <span>${item.before}</span>
+                    <input type="text" id="t1-${index}" data-ans="${item.ans}" class="px-3 py-1 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none w-36">
+                    <span class="text-xs text-slate-400">(${item.verb})</span>
+                    <span>${item.after}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderTask2() {
+            const container = document.getElementById('task2-list');
+            container.innerHTML = task2Data.map((item, index) => `
+                <div class="p-4 rounded-xl border border-slate-200 space-y-2">
+                    <div class="text-sm font-semibold text-rose-600 flex items-center gap-2">
+                        <i class="fa-solid fa-xmark"></i> ${item.original}
+                    </div>
+                    <input type="text" id="t2-${index}" data-ans="${item.ans}" placeholder="Введіть правильне речення..." class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    <div id="t2-ans-${index}" class="text-xs text-slate-500 hidden">Правильно: <span class="font-medium text-emerald-700">${item.ans}</span></div>
+                </div>
+            `).join('');
+        }
+
+        function renderTask3() {
+            const container = document.getElementById('task3-list');
+            container.innerHTML = task3Data.map((item, index) => `
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <div class="font-semibold text-slate-700">${index + 1}. ${item.ukr}</div>
+                        <div id="t3-ans-${index}" class="text-indigo-600 font-medium text-sm mt-1 hidden">${item.eng}</div>
+                    </div>
+                    <button onclick="toggleT3('${index}')" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-2 rounded-lg font-medium self-start md:self-auto transition">
+                        Показати переклад
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function renderTask4() {
+            const container = document.getElementById('task4-list');
+            container.innerHTML = task4Data.map((item, index) => `
+                <div class="p-4 border border-slate-200 rounded-xl space-y-3">
+                    <div class="font-semibold text-slate-800">${index + 1}. ${item.q}</div>
+                    <div class="space-y-2">
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="t4-${index}" value="a" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm">${item.opts[0]}</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="t4-${index}" value="b" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm">${item.opts[1]}</span>
+                        </label>
+                    </div>
+                    <div id="t4-res-${index}" class="text-xs font-semibold"></div>
+                </div>
+            `).join('');
+        }
+
+        function renderTask5() {
+            const container = document.getElementById('task5-list');
+            container.innerHTML = task5Verbs.map((verb, index) => `
+                <div class="p-3 border border-slate-200 rounded-xl space-y-1">
+                    <label class="text-xs font-bold uppercase text-indigo-600">Verb: ${verb}</label>
+                    <input type="text" placeholder="Складіть речення з ${verb}..." class="w-full px-3 py-1.5 text-sm border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+            `).join('');
+        }
+
+        // Logic Checkers
+        function checkTask1() {
+            task1Data.forEach((item, index) => {
+                const el = document.getElementById(`t1-${index}`);
+                const val = el.value.trim().toLowerCase();
+                if (val === item.ans.toLowerCase()) {
+                    el.className = "px-3 py-1 border rounded-md shadow-sm w-36 correct-bg text-emerald-800 font-bold";
+                } else {
+                    el.className = "px-3 py-1 border rounded-md shadow-sm w-36 incorrect-bg text-rose-800 font-bold";
+                }
+            });
+        }
+
+        function checkTask2() {
+            task2Data.forEach((item, index) => {
+                const el = document.getElementById(`t2-${index}`);
+                const ansBox = document.getElementById(`t2-ans-${index}`);
+                const val = el.value.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+                const cleanAns = item.ans.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+                
+                ansBox.classList.remove('hidden');
+                if (val === cleanAns) {
+                    el.className = "w-full px-3 py-2 border rounded-lg text-sm correct-bg text-emerald-800 font-medium";
+                } else {
+                    el.className = "w-full px-3 py-2 border rounded-lg text-sm incorrect-bg text-rose-800 font-medium";
+                }
+            });
+        }
+
+        function toggleT3(id) {
+            const el = document.getElementById(`t3-ans-${id}`);
+            el.classList.toggle('hidden');
+        }
+
+        function checkTask4() {
+            task4Data.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="t4-${index}"]:checked`);
+                const res = document.getElementById(`t4-res-${index}`);
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        res.textContent = "Правильно!";
+                        res.className = "text-xs font-semibold text-emerald-600";
+                    } else {
+                        res.textContent = "Невірно. Спробуйте ще раз.";
+                        res.className = "text-xs font-semibold text-rose-600";
+                    }
+                }
+            });
+        }
+
+        function checkChallenge() {
+            for (let i = 1; i <= 9; i++) {
+                const el = document.getElementById(`ch-${i}`);
+                const val = el.value.trim().toLowerCase();
+                const target = el.dataset.ans.toLowerCase();
+                if (val === target) {
+                    el.className = "w-28 px-2 py-1 border rounded text-center font-bold correct-bg text-emerald-800";
+                } else {
+                    el.className = "w-28 px-2 py-1 border rounded text-center font-bold incorrect-bg text-rose-800";
+                }
+            }
+        }
+
+        // Init
+        window.onload = () => {
+            renderTask1();
+            renderTask2();
+            renderTask3();
+            renderTask4();
+            renderTask5();
+        };
+    </script>
+</body>
+</html>
